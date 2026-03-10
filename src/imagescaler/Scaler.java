@@ -6,9 +6,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.Color;
 
-// See if you can make a non-fixed ratio scaler and add as a third overload
 
-// Make work with png alpha values (colour.getAlpha(), interpolate alpha values? int[][][] but last list is of size 4 now?)
 public class Scaler {
     public static BufferedImage scaleImage(String imagePath,int scale){
         return scaleImage(imagePath,null,null,scale,false);
@@ -44,7 +42,6 @@ public class Scaler {
         }
         return scaledImage;
     }
-
 
     private static int[][] getValuesGreyscale(String path){
         try{
@@ -184,5 +181,4 @@ public class Scaler {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,18 +1,13 @@
-## Getting Started
+# ImageScaling
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This is a Java Project which scales an image using bilinear interpolation.
 
-## Folder Structure
+## How it works
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- The pixel data is retrieved and placed inside a 2D/3D list (depending on whether the image is greyscale)
+- Then a new empty 2D/3D list is created with (scale-1) extra rows and columns between each of the original rows and columns
+- Now each row of the pixel data is resampled to have (scale-1) points between each original point and these rows are added to every other row in the new 2D/3D list
+- Finally, every column of the new 2D/3D list is resampled and the 2D/3D list is overwritten with these resampled columns
+- The resulting 3D list will have (scale -1) points between every original point and all its ajacent points
+- These points gradually change the RGB values to convert from the original 1st point to the original second point
+- This results in an unoticeable gradient to expand images (for sufficiently large images) 

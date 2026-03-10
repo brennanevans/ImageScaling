@@ -13,3 +13,7 @@ This is a Java Project which scales an image using bilinear interpolation.
 - The resulting 3D list will have (scale -1) points between every original point and all its ajacent points
 - These points gradually change the RGB values to convert from the original 1st point to the original second point
 - This results in an unoticeable gradient to expand images (for sufficiently large images) 
+
+## Supported image types:
+- Any image type which stores data as RGB values can be scaled
+- However, output image is created using java.awt.image.BufferedImage so can only output images supported by this library

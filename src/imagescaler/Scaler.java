@@ -2,6 +2,7 @@ package imagescaler;
 
 import java.awt.image.*;
 import java.io.IOException;
+import java.security.InvalidParameterException;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -26,6 +27,14 @@ public class Scaler {
     }
 
     public static BufferedImage scaleImage(String imagePath,String savePath,String fileFormat,int scale,boolean isGreyscale) throws IOException{
+        // Attempts to save the original image using fileFormat passed to 
+        // determine if scaled image will be able to be saved. Usually not the
+        // case for images with alpha values and fileFormats without alpha 
+        // values e.g. png -> jpg
+
+        // throws Error without having to scale first (Faster)
+        saveImage(ImageIO.read(new File(imagePath)),savePath,fileFormat);
+
         // Note if isGreyscale == true, alpha values will be ignored
         BufferedImage scaledImage;
 
@@ -50,7 +59,7 @@ public class Scaler {
 
         int width = image.getWidth();
         int height = image.getHeight();
-        int [][] values = new int[width][height];
+        int [][] values = new int[height][width];
 
         for (int y=0; y<height; y++){
             for (int x=0; x<width; x++){
@@ -176,7 +185,9 @@ public class Scaler {
         return newImage;
     }
 
-    private static void saveImage(BufferedImage image,String savePath,String fileFormat) throws IOException{
-        ImageIO.write(image, fileFormat, new File(savePath+"."+fileFormat));
+    private static void saveImage(BufferedImage image,String savePath,String fileFormat) throws IOException,IllegalArgumentException{
+        if (!ImageIO.write(image, fileFormat, new File(savePath+"."+fileFormat))){
+            throw new IllegalArgumentException("fileFormat is not valid for image type");
+        }
     }
 }

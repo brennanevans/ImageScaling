@@ -2,7 +2,6 @@ package imagescaler;
 
 import java.awt.image.*;
 import java.io.IOException;
-import java.security.InvalidParameterException;
 
 import javax.imageio.ImageIO;
 import java.io.File;

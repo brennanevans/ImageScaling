@@ -2,7 +2,6 @@ package imagescaler;
 
 import java.io.IOException;
 
-// Currently in .gitignore as this is just the method to test the classes 
 public class Main {
     // An example of how to use the ImageScaler
     public static void main(String[] args) {

@@ -16,6 +16,6 @@ This is a Java Project which scales an image using bilinear interpolation.
 
 ## Supported image types:
 - Any image type which stores data as RGB values can be scaled
-- Images which have alpha values such as pngs are now also supported (note attempting to convert these to a file type without alpha values using this method will throw an error)
+- Images which have alpha values such as pngs are now also supported (note attempting to convert these to a file type without alpha values using the scaleImage method will throw an exception)
 >
 - Output image is created using java.awt.image.BufferedImage so can only output image types supported by this library
